@@ -10,7 +10,6 @@ require("codemirror/addon/display/placeholder.js");
 require("codemirror/addon/selection/mark-selection.js");
 require("codemirror/mode/gfm/gfm.js");
 require("codemirror/mode/xml/xml.js");
-var CodeMirrorSpellChecker = require("codemirror-spell-checker");
 
 // Some variables
 var isMac = /Mac/.test(navigator.platform);
@@ -1442,10 +1441,6 @@ SimpleMDE.prototype.render = function(el) {
 		backdrop = options.parsingConfig;
 		backdrop.name = "gfm";
 		backdrop.gitHubSpice = false;
-
-		CodeMirrorSpellChecker({
-			codeMirrorInstance: CodeMirror
-		});
 	} else {
 		mode = options.parsingConfig;
 		mode.name = "gfm";

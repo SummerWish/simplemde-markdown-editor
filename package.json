@@ -5,7 +5,6 @@
   "main": "./src/js/simplemde.js",
   "license": "MIT",
   "dependencies": {
-    "codemirror": "*",
-    "codemirror-spell-checker": "*"
+    "codemirror": "^5.17.0"
   }
 }

@@ -12,6 +12,8 @@ Because SimpleMDE doesn't accept our PRs.
 
 - Removed `marked` (for vijos)
 
+- Removed `CodeMirrorSpellChecker` (for vijos)
+
 ## Install
 
 `npm install --save vj-simplemde`
