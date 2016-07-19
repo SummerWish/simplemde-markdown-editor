@@ -1,12 +1,11 @@
 {
   "name": "vj-simplemde",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "./src/js/simplemde.js",
   "license": "MIT",
   "dependencies": {
     "codemirror": "*",
-    "codemirror-spell-checker": "*",
-    "marked": "*"
+    "codemirror-spell-checker": "*"
   }
 }
