@@ -2,6 +2,20 @@
 
 A forked version of [Simple Markdown Editor](https://simplemde.com/).
 
-- Install: `npm install --save vj-simplemde`
+## Why forks?
 
-- View [documentation](https://github.com/NextStepWebs/simplemde-markdown-editor)
+Because SimpleMDE doesn't accept our PRs.
+
+## So what has been changed?
+
+- Added namespace to styles
+
+- Removed `marked` (for vijos)
+
+## Install
+
+`npm install --save vj-simplemde`
+
+## Documentation
+
+Read original documentation: https://github.com/NextStepWebs/simplemde-markdown-editor
