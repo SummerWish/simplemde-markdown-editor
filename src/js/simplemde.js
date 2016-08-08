@@ -1456,6 +1456,14 @@ SimpleMDE.prototype.render = function(el) {
 		styleSelectedText: (options.styleSelectedText != undefined) ? options.styleSelectedText : true
 	});
 
+	var wrapper = document.createElement('div');
+	wrapper.className = 'simplemde';
+
+	var cmwrapper = this.codemirror.getWrapperElement();
+	cmwrapper.parentNode.appendChild(wrapper);
+	wrapper.appendChild(cmwrapper);
+	this.wrapper = wrapper;
+
 	if(options.forceSync === true) {
 		var cm = this.codemirror;
 		cm.on("change", function() {
