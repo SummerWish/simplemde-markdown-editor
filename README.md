@@ -18,6 +18,8 @@ Because SimpleMDE didn't accept our reasonable PRs.
 
 - Add a wrapper to the SimpleMDE
 
+- Support pre-renderring preview
+
 ## Install
 
 `npm install --save vj-simplemde`
