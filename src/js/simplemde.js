@@ -26,6 +26,7 @@ var bindings = {
 	"toggleOrderedList": toggleOrderedList,
 	"toggleUnorderedList": toggleUnorderedList,
 	"toggleCodeBlock": toggleCodeBlock,
+	"preRenderPreview": preRenderPreview,
 	"togglePreview": togglePreview,
 	"toggleStrikethrough": toggleStrikethrough,
 	"toggleHeading1": toggleHeading1,
@@ -744,19 +745,49 @@ function toggleSideBySide(editor) {
 
 
 /**
- * Preview action.
+ * Async render preview
  */
-function togglePreview(editor) {
+function preRenderPreview(editor) {
+	if (editor._renderPromise != null) {
+		return;
+	}
+	var preview = getPreview(editor);
+	preview.innerHTML = "Please wait...";
+
+	var val = editor.value();
+	var promise = editor.options
+		.previewRender(val)
+		.then(function (html) {
+			console.log(html);
+			if (promise.isCancelled) {
+				return;
+			}
+			preview.innerHTML = html;
+		});
+	editor._renderPromise = promise;
+}
+
+function getPreview(editor) {
 	var cm = editor.codemirror;
 	var wrapper = cm.getWrapperElement();
-	var toolbar_div = wrapper.previousSibling;
-	var toolbar = editor.options.toolbar ? editor.toolbarElements.preview : false;
 	var preview = wrapper.lastChild;
 	if(!preview || !/simplemde-preview/.test(preview.className)) {
 		preview = document.createElement("div");
 		preview.className = "simplemde-preview";
 		wrapper.appendChild(preview);
 	}
+	return preview;
+}
+
+/**
+ * Preview action.
+ */
+function togglePreview(editor) {
+	var cm = editor.codemirror;
+	var wrapper = cm.getWrapperElement();
+	var preview = getPreview(editor);
+	var toolbar_div = wrapper.previousSibling;
+	var toolbar = editor.options.toolbar ? editor.toolbarElements.preview : false;
 	if(/simplemde-preview-active/.test(preview.className)) {
 		preview.className = preview.className.replace(
 			/\s*simplemde-preview-active\s*/g, ""
@@ -766,6 +797,7 @@ function togglePreview(editor) {
 			toolbar_div.className = toolbar_div.className.replace(/\s*disabled-for-preview*/g, "");
 		}
 	} else {
+		preRenderPreview(editor);
 		// When the preview button is clicked for the first time,
 		// give some time for the transition from editor.css to fire and the view to slide from right to left,
 		// instead of just appearing.
@@ -777,7 +809,7 @@ function togglePreview(editor) {
 			toolbar_div.className += " disabled-for-preview";
 		}
 	}
-	preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+	//preview.innerHTML = editor.options.previewRender(editor.value(), preview);
 
 	// Turn off side by side if needed
 	var sidebyside = cm.getWrapperElement().nextSibling;
@@ -1467,6 +1499,10 @@ SimpleMDE.prototype.render = function(el) {
 	if(options.forceSync === true) {
 		var cm = this.codemirror;
 		cm.on("change", function() {
+			if (self._renderPromise) {
+				self._renderPromise.isCancelled = true;
+				self._renderPromise = null;
+			}
 			cm.save();
 		});
 	}
@@ -1689,6 +1725,12 @@ SimpleMDE.prototype.createToolbar = function(items) {
 				}
 			}
 
+			if (item.preAction) {
+				el.onmouseover = function() {
+					item.preAction(self);
+				};
+			}
+
 			toolbarData[item.name || item] = el;
 			bar.appendChild(el);
 		})(items[i]);
@@ -1867,6 +1909,7 @@ SimpleMDE.drawTable = drawTable;
 SimpleMDE.drawHorizontalRule = drawHorizontalRule;
 SimpleMDE.undo = undo;
 SimpleMDE.redo = redo;
+SimpleMDE.preRenderPreview = preRenderPreview;
 SimpleMDE.togglePreview = togglePreview;
 SimpleMDE.toggleSideBySide = toggleSideBySide;
 SimpleMDE.toggleFullScreen = toggleFullScreen;
@@ -1930,6 +1973,9 @@ SimpleMDE.prototype.undo = function() {
 };
 SimpleMDE.prototype.redo = function() {
 	redo(this);
+};
+SimpleMDE.prototype.preRenderPreview = function () {
+	preRenderPreview(this);
 };
 SimpleMDE.prototype.togglePreview = function() {
 	togglePreview(this);
