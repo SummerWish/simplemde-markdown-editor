@@ -20,6 +20,8 @@ Because SimpleMDE didn't accept our reasonable PRs.
 
 - Support pre-renderring preview
 
+- Use `data-tooltip` instead of `title` (for vijos)
+
 ## Install
 
 `npm install --save vj-simplemde`

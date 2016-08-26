@@ -98,12 +98,8 @@ function createIcon(options, enableTooltips, shortcuts) {
 	enableTooltips = (enableTooltips == undefined) ? true : enableTooltips;
 
 	if(options.title && enableTooltips) {
-		el.title = createTootlip(options.title, options.action, shortcuts);
-
-		if(isMac) {
-			el.title = el.title.replace("Ctrl", "⌘");
-			el.title = el.title.replace("Alt", "⌥");
-		}
+		var title = createTootlip(options.title, options.action, shortcuts);
+		el.setAttribute('data-tooltip', title);
 	}
 
 	el.tabIndex = -1;
