@@ -1,10 +1,10 @@
 {
   "name": "vj-simplemde",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "./src/js/simplemde.js",
   "license": "MIT",
   "dependencies": {
-    "codemirror": "^5.17.0"
+    "codemirror": "^5.18.2"
   }
 }

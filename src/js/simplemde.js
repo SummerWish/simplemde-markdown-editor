@@ -754,7 +754,6 @@ function preRenderPreview(editor) {
 	var promise = editor.options
 		.previewRender(val)
 		.then(function (html) {
-			console.log(html);
 			if (promise.isCancelled) {
 				return;
 			}
