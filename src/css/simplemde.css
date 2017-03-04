@@ -65,56 +65,6 @@
     opacity: .8
 }
 
-.simplemde-toolbar.fullscreen {
-    width: 100%;
-    height: 50px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    box-sizing: border-box;
-    background: #fff;
-    border: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    opacity: 1;
-    z-index: 9;
-}
-
-.simplemde-toolbar.fullscreen::before {
-    width: 20px;
-    height: 50px;
-    background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(255, 255, 255, 0)));
-    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    background: -o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    background: -ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-}
-
-.simplemde-toolbar.fullscreen::after {
-    width: 20px;
-    height: 50px;
-    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 1)));
-    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    position: fixed;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-}
-
 .simplemde-toolbar a {
     display: inline-block;
     text-align: center;
@@ -249,25 +199,6 @@
 
 .simplemde-preview-active {
     display: block
-}
-
-.simplemde-preview>p,
-.simplemde-preview-side>p {
-    margin-top: 0
-}
-
-.simplemde-preview pre,
-.simplemde-preview-side pre {
-    background: #eee;
-    margin-bottom: 10px;
-}
-
-.simplemde-preview table td,
-.simplemde-preview table th,
-.simplemde-preview-side table td,
-.simplemde-preview-side table th {
-    border: 1px solid #ddd;
-    padding: 5px;
 }
 
 .cm-s-simplemde .CodeMirror-code .cm-tag {

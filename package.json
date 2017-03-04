@@ -1,6 +1,6 @@
 {
   "name": "vj-simplemde",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "main": "./src/js/simplemde.js",
   "license": "MIT",
